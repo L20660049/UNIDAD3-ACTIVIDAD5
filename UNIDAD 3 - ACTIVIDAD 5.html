@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador</title>
+    <style>
+        /* Estilos generales para el cuerpo de la página */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        /* Estilo para el título principal */
+        h1 {
+            font-size: 2.5em;
+            color: #4A90E2;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Estilo para el valor del contador */
+        #valor-contador {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #333;
+            background-color: #e1f5fe;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        /* Estilos generales para los botones */
+        button {
+            background-color: #4A90E2;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        /* Cambios de color y animaciones cuando se pasa el mouse sobre el botón */
+        button:hover {
+            background-color: #357ABD;
+            transform: scale(1.05);
+        }
+
+        /* Estilo cuando el botón está siendo presionado */
+        button:active {
+            background-color: #2C6BA1;
+        }
+
+        /* Estilos específicos para el botón de incrementar */
+        #incrementar {
+            background-color: #2ECC71;
+        }
+
+        /* Estilo para el botón de incrementar al pasar el mouse */
+        #incrementar:hover {
+            background-color: #27AE60;
+        }
+
+        /* Estilos específicos para el botón de decrementar */
+        #decrementar {
+            background-color: #E74C3C;
+        }
+
+        /* Estilo para el botón de decrementar al pasar el mouse */
+        #decrementar:hover {
+            background-color: #C0392B;
+        }
+
+        /* Estilo para el fondo del contador cuando aumenta el valor */
+        #valor-contador.increment {
+            background-color: #D4EFDF;
+        }
+
+        /* Estilo para el fondo del contador cuando disminuye el valor */
+        #valor-contador.decrement {
+            background-color: #FADBD8;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Contador Simple</h1>
+        <!-- Botones para incrementar y decrementar el contador -->
+        <button id="incrementar"></button>
+        <button id="decrementar"></button>
+        <!-- Elemento donde se mostrará el valor actual del contador -->
+        <div id="valor-contador">0</div>
+    </div>
+
+    <script>
+        // Definir los textos de los botones basados en las variables
+        const subirparriba = "subirparriba";
+        const bajarpabajo = "bajarpabajo";
+
+        // Asignar los textos a los botones correspondientes
+        document.getElementById('incrementar').textContent = subirparriba;
+        document.getElementById('decrementar').textContent = bajarpabajo;
+
+        // Inicialización del valor del contador
+        let contador = 0;
+
+        /**
+         * Función para actualizar el valor del contador en el DOM.
+         * También aplica un estilo diferente dependiendo de si el contador es positivo o negativo.
+         */
+        const actualizarContador = () => {
+            const valorContador = document.getElementById('valor-contador');
+            valorContador.textContent = contador;
+
+            // Remover clases anteriores de incremento o decremento
+            valorContador.classList.remove('increment', 'decrement');
+
+            // Aplicar la clase según si el contador es mayor o menor que cero
+            if (contador > 0) {
+                valorContador.classList.add('increment');
+            } else if (contador < 0) {
+                valorContador.classList.add('decrement');
+            }
+        };
+
+        // Event listener para incrementar el contador al hacer clic en el botón de "subirparriba"
+        document.getElementById('incrementar').addEventListener('click', () => {
+            contador++;
+            actualizarContador(); // Actualizar el valor mostrado
+        });
+
+        // Event listener para decrementar el contador al hacer clic en el botón de "bajarpabajo"
+        document.getElementById('decrementar').addEventListener('click', () => {
+            contador--;
+            actualizarContador(); // Actualizar el valor mostrado
+        });
+    </script>
+</body>
+</html>
